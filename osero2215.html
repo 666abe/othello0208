@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="jis">
+    <title>osero</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- cssデザインパート -->
+  <style>
+	/* TD タグのスタイル定義で、盤面を表現 */
+	td {
+		width: 64px;
+		height: 64px;
+		text-align: center;
+		vertical-align: middle;
+		background-color: #44cc00;
+	}
+
+	/* 白い駒表示用のスタイルクラス */
+	.white {
+		color: #FFFFFF;
+    font-size: 1.5em;
+	}
+
+	/* 黒い駒表示用のスタイルクラス */
+	.black {
+		color: #000000;
+    font-size: 1.5em;
+	}
+</style>
+
+
+<!-- 処理に関する記述 -->
+<script language="javascript">
+	/** テーブルのセルクリック時の関数
+	 * 引数で渡された内容を、alertダイアログで表示する。
+	 */
+   var count = 0;
+   var cellcount = 0;
+
+//カウント
+   function countClick() {
+   	count+=1;
+   	document.getElementById("countTest").innerHTML = count;
+   }
+
+//セルのカウント
+  function cellc(col, row) {
+    cellcount+=1;
+    document.getElementById("cellcount").innerHTML = cellcount;
+  }
+
+
+//セルクリック
+function cellClick(col, row) {
+  alert("col=" + col + ", row=" + row);
+//おけないなら
+  if $("cell_" + col + "_" + row).hasClass("white"||"black") {
+      alert("既に駒が置かれています。");
+    }
+  }else {
+    if (cellcount % 2 == 0) {
+      //alert("白"); // 白
+      document.getElementById("cell_" + col + "_" + row).className = "white"; // クリックしたセルの駒を白にするクラスを指定する処理
+      document.getElementById("cell_" + col + "_" + row).innerHTML = "●"; // クリックしたセルに駒を置く処理
+    }else {
+      //alert("黒"); // 黒
+      document.getElementById("cell_" + col + "_" + row).className = "black"; // クリックしたセルの駒を黒にするクラスを指定する処理
+      document.getElementById("cell_" + col + "_" + row).innerHTML = "●"; // クリックしたセルに駒を置く処理
+  }
+}
+
+
+	/** ボタン１の処理 **/
+	function buttonClickKadai1() {
+		alert(
+      "ボタン１"
+    );
+  }
+
+
+	/** ボタン２の処理 **/
+	function buttonClickKadai2() {
+		alert(
+      "ボタン２"
+    );
+	}
+
+</script>
+</head>
+
+
+<body>
+	<!-- オセロ盤面を表示 -->
+	<table id="othero" border="1" onclick="cellc();">
+	<tr>
+		<td onclick="cellClick(0, 0);"><span id="cell_0_0" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(1, 0);"><span id="cell_1_0" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(2, 0);"><span id="cell_2_0" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(3, 0);"><span id="cell_3_0" class="noDisc">&nbsp;</span></td>
+	</tr>
+	<tr>
+		<td onclick="cellClick(0, 1);"><span id="cell_0_1" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(1, 1);"><span id="cell_1_1" class="white">●</span></td>
+		<td onclick="cellClick(2, 1);"><span id="cell_2_1" class="black">●</span></td>
+		<td onclick="cellClick(3, 1);"><span id="cell_3_1" class="noDisc">&nbsp;</span></td>
+	</tr>
+	<tr>
+		<td onclick="cellClick(0, 2);"><span id="cell_0_2" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(1, 2);"><span id="cell_1_2" class="black">●</span></td>
+		<td onclick="cellClick(2, 2);"><span id="cell_2_2" class="white">●</span></td>
+		<td onclick="cellClick(3, 2);"><span id="cell_3_2" class="noDisc"></span></td>
+	</tr>
+	<tr>
+		<td onclick="cellClick(0, 3);"><span id="cell_0_3" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(1, 3);"><span id="cell_1_3" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(2, 3);"><span id="cell_2_3" class="noDisc">&nbsp;</span></td>
+		<td onclick="cellClick(3, 3);"><span id="cell_3_3" class="noDisc">&nbsp;</span></td>
+	</tr>
+	</table>
+
+
+	<p>
+	<input type="button" value="ボタン１" onclick="buttonClickKadai1();" />
+	</p>
+
+	<p>
+	<input type="button" value="ボタン２" onclick="buttonClickKadai2();" />
+	</p>
+
+  <p id="teban" >
+    次の手番：
+  </p>
+
+  <p>
+    <input type="button" value="カウントアップ" onclick="countClick();" />
+    <span id="countTest">0</span>
+  </p>
+
+
+
+  </body>
+</html>
